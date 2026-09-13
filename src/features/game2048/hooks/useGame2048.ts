@@ -8,7 +8,7 @@ import {
 } from "../utils/gameLogic";
 import type { Board, Direction } from "../utils/gameLogic";
 
-type Status = "playing" | "won" | "over";
+export type Status = "playing" | "won" | "over";
 
 function freshBoard(): Board {
   let board = createEmptyBoard();
