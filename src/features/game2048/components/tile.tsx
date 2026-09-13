@@ -9,7 +9,7 @@ export function Tile({ value, row, col }: TileProp) {
 
   return (
     <div
-      className={`tile tile-{value}`}
+      className={`tile tile-${value}`}
       style={{
         gridColumn: col + 1,
         gridRow: row + 1,

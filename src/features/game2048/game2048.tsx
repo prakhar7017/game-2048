@@ -34,19 +34,19 @@ export function Game2048() {
     const swipeHandlers = useSwipe(handelMove);
 
     return (
-        <div>
-            <header>
-                <h1>2048</h1>
+        <div className="game-shell">
+            <header className="game-header">
+                <h1 className="title">2048</h1>
                 <Scoreboard score={score} best={best}/>
             </header>
-            <p>
+            <p className="instructions">
                 Combine tiles with the same number. Arrow keys / WASD, or swipe on touch.
             </p>
-            <div>
+            <div className="board-wrap">
                 <Board board={board} swipeHandlers={swipeHandlers}/>
                 <Overlay status={status} onRestart={restart} onKeepPlaying={keepPlaying}/>
             </div>
-            <button onClick={restart}>
+            <button className="btn btn-secondary restart-btn" onClick={restart}>
                 New Game
             </button>
         </div>
