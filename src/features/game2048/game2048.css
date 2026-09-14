@@ -169,7 +169,7 @@ body {
 }
 
 .board {
-  width: min(90vw, 420px, calc(100vh - 260px));
+  width: min(90vw, 420px, calc(100dvh - 260px));
   aspect-ratio: 1;
   background: var(--panel);
   border-radius: var(--radius);
