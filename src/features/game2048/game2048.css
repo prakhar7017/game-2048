@@ -1,11 +1,11 @@
 :root {
-  --bg: #FAF8F0;
+  --bg: #faf8f0;
   --radius: 10px;
-  --panel: #9C8979;
-  --text-primary: #3B2E26;
-  --text-muted: #BDAC97;
-  --tile-bg: #BDAC97;
-  --accent: #8C7357;
+  --panel: #9c8979;
+  --text-primary: #3b2e26;
+  --text-muted: #bdac97;
+  --tile-bg: #bdac97;
+  --accent: #8c7357;
   --gap: 10px;
 }
 
@@ -13,31 +13,45 @@ body {
   margin: 0;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 .game-shell {
-    height: 100vh;
-    /* overflow: hidden; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    padding: 32px 16px 48px;
-    background: var(--bg);
-    color: var(--text-primary);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  height: 100dvh;
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 16px 48px;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  overscroll-behavior: none;
 }
 
 .game-header {
-    width: 100%;
-    max-width: 480px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 16px;
-    flex-wrap: wrap;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .title {
@@ -48,22 +62,22 @@ body {
 }
 
 .scoreboard {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 20px;
 }
 
 .score-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: var(--panel);
-    padding: 8px 14px;
-    gap:2px;
-    border-radius: var(--radius);
-    color: var(--text-primary);
-    min-width: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--panel);
+  padding: 8px 14px;
+  gap: 2px;
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  min-width: 64px;
 }
 
 .score-box-filled {
@@ -76,21 +90,21 @@ body {
 }
 
 .score-label {
-    font-size: 12px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    font-weight: 600;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .score-value {
-    font-size: 20px;
-    color: var(--text-primary);
-    font-weight: 700;
+  font-size: 20px;
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
 .instructions {
-    font-size: 15px;
-    font-weight: 500;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .board-wrap {
@@ -119,78 +133,79 @@ body {
 }
 
 .overlay-card {
-    text-align: center;
+  text-align: center;
 }
 
 .overlay-title {
-    font-size: 22px;
-    font-weight: 700;
-    color: #FFF8F0;
-    margin: 0 0 16px
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff8f0;
+  margin: 0 0 16px;
 }
 
 .overlay-actions {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
 
 .btn {
-    border: none;
-    border-radius: var(--radius);
-    padding: 10px 18px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
 }
 .btn-primary {
-    background: var(--accent);
-    color: #FFF8F0;
+  background: var(--accent);
+  color: #fff8f0;
 }
 
 .btn-ghost {
-    background: transparent;
-    color: #FFF8F0;
-    border: 1px solid #FFF8F0;
+  background: transparent;
+  color: #fff8f0;
+  border: 1px solid #fff8f0;
 }
 
-  .board {
-      width: min(90vw,420px,calc(100vh - 260px));
-      aspect-ratio: 1;
-      background: var(--panel);
-      border-radius: var(--radius);
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-      grid-template-rows: repeat(4,1fr);
-      padding: var(--gap);
-      gap: var(--gap);
-  }
+.board {
+  width: min(90vw, 420px, calc(100vh - 260px));
+  aspect-ratio: 1;
+  background: var(--panel);
+  border-radius: var(--radius);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  padding: var(--gap);
+  gap: var(--gap);
+  touch-action: none;
+}
 
 .board-cell-bg {
-    background: var(--tile-bg);
-    border-radius: var(--radius);
+  background: var(--tile-bg);
+  border-radius: var(--radius);
 }
 
 .tile {
-    background-color: var(--bg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    font-weight: 700;
-    border-radius: var(--radius);
-    animation: pop 150ms ease-out;
+  background-color: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 700;
+  border-radius: var(--radius);
+  animation: pop 150ms ease-out;
 }
 
 @keyframes pop {
-    from {
-        transform: scale(0.6);
-        opacity: 0.4;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+  from {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .tile-2 {
@@ -199,53 +214,53 @@ body {
 }
 
 .tile-4 {
-  background-color: #EBD8B6;
+  background-color: #ebd8b6;
   color: var(--text-primary);
 }
 
 .tile-8 {
-  background-color: #F1AE71;
+  background-color: #f1ae71;
   color: var(--text-primary);
 }
 
 .tile-16 {
-  background-color: #F58F5A;
-  color: #FFF8F0;
+  background-color: #f58f5a;
+  color: #fff8f0;
 }
 
 .tile-32 {
-  background-color: #F57557;
-  color: #FFF8F0;
+  background-color: #f57557;
+  color: #fff8f0;
 }
 
 .tile-64 {
-  background-color: #F55A36;
-  color: #FFF8F0;
+  background-color: #f55a36;
+  color: #fff8f0;
 }
 
 .tile-128 {
-  background-color: #EDCF72;
-  color: #3B2E26;
+  background-color: #edcf72;
+  color: #3b2e26;
 }
 
 .tile-256 {
-  background-color: #EDCC61;
-  color: #3B2E26;
+  background-color: #edcc61;
+  color: #3b2e26;
 }
 
 .tile-512 {
-  background-color: #EDC850;
-  color: #FFF8F0;
+  background-color: #edc850;
+  color: #fff8f0;
 }
 
 .tile-1024 {
-  background-color: #EDC53F;
-  color: #FFF8F0;
+  background-color: #edc53f;
+  color: #fff8f0;
 }
 
 .tile-2048 {
-  background-color: #3B2E26;
-  color: #F5CC46;
+  background-color: #3b2e26;
+  color: #f5cc46;
 }
 
 @media (prefers-reduced-motion: reduce) {
