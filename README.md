@@ -1,76 +1,87 @@
-# React + TypeScript + Vite
+# 2048
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean, responsive take on the classic [2048](https://en.wikipedia.org/wiki/2048_(video_game)) sliding-tile puzzle, built with React 19, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+Slide the tiles, merge matching numbers, and try to reach the **2048** tile.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Classic 4×4 board with two starting tiles
+- Keyboard controls (arrow keys or WASD)
+- Swipe controls on touch devices
+- Live score and best score for the session
+- Win screen with the option to keep playing past 2048
+- Game-over detection when no moves are left
+- Mobile-friendly layout
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## How to play
 
-## Expanding the ESLint configuration
+| Input                | Action           |
+| -------------------- | ---------------- |
+| `↑` / `W`            | Slide up         |
+| `↓` / `S`            | Slide down       |
+| `←` / `A`            | Slide left       |
+| `→` / `D`            | Slide right      |
+| Swipe (touch)        | Slide that way   |
+| **New Game** button  | Restart          |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+When you slide, every tile moves as far as it can in that direction. Two tiles with the same number merge into one tile worth their sum, and that sum is added to your score. After each move that changes the board, a new tile appears in an empty cell: a `2` 90% of the time, or a `4` otherwise. The game ends when the board is full and no neighboring tiles can merge.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**Prerequisites:** [Node.js](https://nodejs.org/) (a current LTS version) and npm.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone git@github.com:prakhar7017/game-2048.git
+cd game-2048
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Then open the URL Vite prints (usually http://localhost:5173).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Command           | Description                                      |
+| ----------------- | ------------------------------------------------ |
+| `npm run dev`     | Start the dev server with hot module reloading  |
+| `npm run build`   | Type-check and build for production into `dist/` |
+| `npm run preview` | Serve the production build locally               |
+| `npm run lint`    | Run ESLint                                       |
+
+## Project structure
 
 ```
-# game-2048
+src/
+├── main.tsx                     # App entry point, renders <Game2048 />
+└── features/game2048/
+    ├── game2048.tsx             # Top-level game component and keyboard input
+    ├── game2048.css             # Game styles
+    ├── components/
+    │   ├── board.tsx            # Grid background and tiles
+    │   ├── tile.tsx             # A single numbered tile
+    │   ├── scoreboard.tsx       # Score and best score
+    │   └── overlay.tsx          # Win and game-over overlay
+    ├── hooks/
+    │   ├── useGame2048.ts       # Game state: board, score, status, actions
+    │   └── useSwipe.ts          # Touch swipe detection
+    └── utils/
+        └── gameLogic.ts         # Pure game logic (slide, merge, win/lose checks)
+```
+
+### How the logic works
+
+All game rules live in `utils/gameLogic.ts` as pure functions with no React dependencies:
+
+- `slideRowLeft` compacts one row to the left and merges equal neighbors. Each tile merges at most once per move.
+- `move` reuses `slideRowLeft` for every direction. It transposes and/or reverses the board so the move becomes a left slide, then undoes the transform afterward.
+- `hasWon` checks for a tile of 2048 or higher, and `isGameOver` checks for a full board with no possible merges.
+
+`useGame2048` wraps these functions in React state, and `game2048.tsx` connects them to keyboard and swipe input.
+
+## Tech stack
+
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vite.dev/)
+- [ESLint](https://eslint.org/)
