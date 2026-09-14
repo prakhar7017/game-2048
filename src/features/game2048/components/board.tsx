@@ -12,9 +12,15 @@ type BoardProps = {
 export function Board({ board, swipeHandlers }: BoardProps) {
   return (
     <div className="board" {...swipeHandlers}>
-      {Array.from({ length: SIZE * SIZE }, (_, i) => (
-        <div key={`bg-${i}`} className="board-cell-bg" />
-      ))}
+      {Array.from({ length: SIZE }, (_, r) =>
+        Array.from({ length: SIZE }, (_, c) => (
+          <div
+            key={`bg-${r}-${c}`}
+            className="board-cell-bg"
+            style={{ gridRow: r + 1, gridColumn: c + 1 }}
+          />
+        )),
+      )}
       {board.flatMap((row, rowIndex) =>
         row.map((value, colIndex) => (
           <Tile
